@@ -1,4 +1,4 @@
-package mips_SubmissionUI.pack_PageObject;
+package pack_PageObject;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

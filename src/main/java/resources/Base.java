@@ -1,10 +1,14 @@
-package mips_SubmissionUI.pack_Resource;
+package resources;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -12,14 +16,14 @@ import java.util.concurrent.TimeUnit;
 
 public class Base {
 
-    public WebDriver driver;
+    public static WebDriver driver;
     public Properties prop;
 
-    public void BrowserInitial() throws IOException
+    public WebDriver BrowserInitial() throws IOException
 
     {
         prop = new Properties();
-        FileInputStream file = new FileInputStream("D:\\QPP\\src\\main\\java\\mips_SubmissionUI\\pack_Resource\\Data.properties");
+        FileInputStream file = new FileInputStream("D:\\QPP\\src\\main\\java\\resources\\Data.properties");
         prop.load(file);
 
         String browserName = prop.getProperty("browser");
@@ -45,7 +49,12 @@ public class Base {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
         driver.get(prop.getProperty("url"));
+        return driver;
 
     }
 
+    public void getScreenshot(String result) throws IOException {
+        File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(src, new File("D:\\QPP\\src\\main\\java\\pack_Screenshot\\"+result+"screensjot.png"));
+    }
 }

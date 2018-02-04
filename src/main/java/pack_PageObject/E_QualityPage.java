@@ -1,15 +1,15 @@
-package mips_SubmissionUI.pack_PageObject;
+package pack_PageObject;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class D_GroupDashboard {
+public class E_QualityPage {
 
     WebDriver driver;
 
-    public D_GroupDashboard(WebDriver driver) {
+    public E_QualityPage(WebDriver driver) {
         this.driver = driver;
 
         PageFactory.initElements(driver, this);
@@ -33,26 +33,16 @@ public class D_GroupDashboard {
     @FindBy(css = ".primary-action")
     WebElement confirm;
 
-    // 3. Text "Group Reporting Dashboard"
-    @FindBy(xpath = "//div[@class='flex-column-reverse']/h1")
-    WebElement groupdash;
+    // 3. Text "Quality"
+    @FindBy(css = ".page-title")
+    WebElement qualitytxt;
 
-    // 4. Category Pages
-    @FindBy(css = "div.category-card:nth-child(1) > a:nth-child(2)")
-    WebElement quality;
-
-    @FindBy(css = "div.category-card:nth-child(2) > a:nth-child(2)")
-    WebElement aci;
-
-    @FindBy(css = "div.category-card:nth-child(3) > a:nth-child(2)")
-    WebElement ia;
-
-    // 5. Left hand navigation bar elements
+    // 4. Left hand navigation bar elements
     @FindBy(linkText = "Account Dashboard")
     WebElement accountDashboard;
 
     @FindBy(linkText = "Connected Clinicians")
-    WebElement connectedclinicians;
+    WebElement connectedClinicians;
 
     @FindBy(linkText = "Group Dashboard")
     WebElement groupDashboard;
@@ -63,7 +53,7 @@ public class D_GroupDashboard {
     @FindBy(linkText = "Advancing Care Information")
     WebElement aciNavigation;
 
-    @FindBy(linkText = "Improvement Activities")
+    @FindBy(xpath = "Improvement Activities")
     WebElement iaNavigation;
 
     @FindBy(css = "button.link-inline")
@@ -71,6 +61,28 @@ public class D_GroupDashboard {
 
     @FindBy(css = ".link-collapse")
     WebElement collapsebtn;
+
+    // 5. Main Page Buttons
+    // a) Full Instructions
+    @FindBy(css = ".show-modal-btn")
+    WebElement openFullInstructions;
+
+    @FindBy(xpath = "//div[@class='modal-header']/h4")
+    WebElement titleFullInstructions;
+
+    @FindBy(css = "button.pull-right:nth-child(1)")
+    WebElement closeFullInstructions;
+
+    // b) File Upload
+    @FindBy(css = ".file-upload-button")
+    WebElement openFileUpload;
+
+    @FindBy(xpath = "//button[@class='btn btn-default close-modal-btn']")
+    WebElement closeFileUpload;
+
+    // c) Delete Category Data
+    @FindBy(linkText = "Delete Category Data")
+    WebElement deleteData;
 
     // 1. Logos validation
     public WebElement getQPPLogo() {
@@ -94,32 +106,19 @@ public class D_GroupDashboard {
         return confirm;
     }
 
-    // 3. Text "Group Reporting Dashboard"
-    public WebElement assertGroupTxt() {
-        return groupdash;
+    // 3. Text "Quality"
+    public WebElement assertQualityTxt() {
+        return qualitytxt;
     }
 
-    // 4. Category Pages
-    public WebElement getQualityButton() {
-        return quality;
-    }
-
-    public WebElement getACIButton() {
-        return aci;
-    }
-
-    public WebElement getIAButton() {
-        return ia;
-    }
-
-    // 5. Left hand navigation bar elements
+    // 4. Left hand navigation bar elements
 
     public WebElement getAccountDashboard() {
         return accountDashboard;
     }
 
     public WebElement getConnectedClinicians() {
-        return groupDashboard;
+        return connectedClinicians;
     }
 
     public WebElement getGroupDashboard() {
@@ -145,5 +144,35 @@ public class D_GroupDashboard {
     public WebElement getCollapseButton() {
         return collapsebtn;
     }
+
+    // 5. Main Page Buttons
+    // a) Full Instructions
+    public WebElement openFullInstructions() {
+        return openFullInstructions;
+    }
+
+    public WebElement closeFullInstructions() {
+        return closeFullInstructions;
+    }
+
+    public WebElement titleFullInstructions() {
+        return titleFullInstructions;
+    }
+
+    // b) File Upload
+    public WebElement openFileUpload() {
+        return openFileUpload;
+    }
+
+    public WebElement closeFileUpload() {
+        return closeFileUpload;
+    }
+
+    // c) Delete Category Data
+    public WebElement openDeleteData() {
+        return deleteData;
+    }
 }
+
+
 

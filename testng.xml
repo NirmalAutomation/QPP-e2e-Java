@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression">
+
+    <listeners>
+        <listener class-name="mips_SubmissionUI.Listeners"/>
+
+        <listener class-name="pack_Reports.ExtentReportNG"/>
+    </listeners>
+
+    <test name="Validate Login and Logout functionality in MIPS Application">
+        <classes>
+            <class name="mips_SubmissionUI.LoginLogout"/>
+        </classes>
+    </test>
+    <test name="Validation Page Navigation across MIPS Application">
+        <classes>
+            <class name="mips_SubmissionUI.PageNavigationTest"/>
+        </classes>
+    </test>
+    <test name="Validation elements presented on Account Dashboard">
+        <classes>
+            <class name="mips_SubmissionUI.AccountDashboard"/>
+        </classes>
+    </test>
+
+</suite>

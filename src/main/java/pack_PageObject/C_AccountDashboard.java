@@ -1,11 +1,9 @@
-package mips_SubmissionUI.pack_PageObject;
+package pack_PageObject;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import javax.swing.text.html.CSS;
 
 public class C_AccountDashboard {
 
@@ -52,6 +50,9 @@ public class C_AccountDashboard {
     @FindBy(css = ".link-collapse")
     WebElement collapsebtn;
 
+    @FindBy(css = ".link-expand")
+    WebElement expandbtn;
+
     // 1. Logos validation
     public WebElement getQPPLogo() {
         return qpplogo;
@@ -89,11 +90,15 @@ public class C_AccountDashboard {
     }
 
     // 5. Left hand navigation bar elements
-    public WebElement NavAccountDashboard() {
+    public WebElement getAccountDashboard() {
         return accountDashboard;
     }
 
     public WebElement getCollapseButton() {
         return collapsebtn;
+    }
+
+    public WebElement getExpandButton() {
+        return expandbtn;
     }
 }
