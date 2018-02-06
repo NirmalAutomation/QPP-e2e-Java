@@ -2,22 +2,22 @@ package mips_SubmissionUI;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.Assert;
 import pack_PageObject.*;
 import resources.Base;
 import org.testng.annotations.*;
 
 import java.io.IOException;
 
-public class PageNavigationTest extends Base {
+public class AdashReportingLinks extends Base {
 
     private static Logger Log = LogManager.getLogger(LoginLogout.class.getName());
 
     @BeforeTest
     public void initializingBrowser() throws IOException {
-
         // Browser Initialization from Base Class
         BrowserInitial();
-        Log.info("MIPS Application Launched and HomePage displayed");
+        Log.info("MIPS Application Launched and Home page displayed");
 
     }
 
@@ -48,58 +48,57 @@ public class PageNavigationTest extends Base {
         // QPP Account Login
         l.getSignin().click();
         Log.info("Click action performed on Signin button");
-
     }
 
-    @Test
-    public void pageNavigation() {
+    @Test(priority = 0)
+    public void groupReportingLink() {
 
-        // QPP AdashLogoVerification
         C_AccountDashboard a = new C_AccountDashboard(driver);
         Log.info("Account Dashboard displayed");
 
-
-        // Navigate to Group Reporting Dashboard
+        // Report as Group User
         a.getGroup().click();
         Log.info("Click action performed on Group Reporting button");
 
-        // Group Reporting Dashboard
         D_GroupDashboard g = new D_GroupDashboard(driver);
         Log.info("Group Dashboard displayed");
 
-        // Navigate to Quality page
-        g.getQualityButton().click();
-        Log.info("Click action performed on Quality link");
+        // Verify the text "Group Reporting Dashboard" presented in the page
+        try {
+            Assert.assertEquals(g.assertGroupTxt().getText(), "Group Reporting Dashboard");
+            Log.info("The page contains the text Group Reporting Dashboard");
 
-        // Quality page
-        E_QualityPage q = new E_QualityPage(driver);
-        Log.info("Quality Page displayed");
+        } catch (Exception e) {
+            Log.error("The page doesn't contains the Group Reporting Dashboard");
+        }
+    }
 
-        // Navigate to ACI page
-        q.getACI().click();
-        Log.info("Click action performed on ACI link");
+    @Test(priority = 1)
+    public void individualReportingLink() {
 
-        // ACI page
-        F_ACIPage ac = new F_ACIPage(driver);
-        Log.info("ACI Page displayed");
+        C_AccountDashboard a = new C_AccountDashboard(driver);
+        Log.info("Account Dashboard displayed");
 
-        // Navigate to IA page
-        ac.getIA().click();
-        Log.info("Click action performed on IA link");
+        // Report as Individual User
+        a.getIndividual().click();
+        Log.info("Click action performed on Individual Reporting button");
 
-        // IA page
-        G_IAPage ia = new G_IAPage(driver);
-        Log.info("IA Page displayed");
+        H_ConnectedClinicians c = new H_ConnectedClinicians(driver);
+        Log.info("Clinical Clinicians displayed");
 
-        // Header element "My Account"
-        ia.getAccountDashboard().click();
-        Log.info("Click action performed on Account Dashboard link");
+        // Verify the text "Connected Clinicians" presented in the page
+        try {
+            Thread.sleep(1000);
+            Assert.assertEquals(c.assertCliniciansTxt().getText(), "Connected Clinicians");
+            Log.info("The page contains the text Connected Clinicians Dashboard");
 
+        } catch (Exception e) {
+            Log.error("The page doesn't contains the Connected Clinicians Dashboard");
+        }
     }
 
     @AfterClass
     public void logoutMIPS() {
-
         C_AccountDashboard a = new C_AccountDashboard(driver);
         Log.info("Account Dashboard displayed");
 
@@ -122,6 +121,7 @@ public class PageNavigationTest extends Base {
         // Browser closing
         driver.close();
         Log.info("Browser closed");
-        driver=null;
+        driver = null;
     }
+
 }

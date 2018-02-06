@@ -20,7 +20,7 @@
     </test>
     <test name="Validation elements presented on Account Dashboard">
         <classes>
-            <class name="mips_SubmissionUI.AccountDashboard"/>
+            <class name="mips_SubmissionUI.AdashLogoVerification"/>
         </classes>
     </test>
 

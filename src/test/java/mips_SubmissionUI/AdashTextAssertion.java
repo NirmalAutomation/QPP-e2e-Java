@@ -2,16 +2,16 @@ package mips_SubmissionUI;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.Assert;
+import org.testng.annotations.*;
 import pack_PageObject.A_HomePage;
 import pack_PageObject.B_LoginPage;
 import pack_PageObject.C_AccountDashboard;
 import resources.Base;
-import org.testng.annotations.*;
 
 import java.io.IOException;
 
-
-public class LoginLogout extends Base {
+public class AdashTextAssertion extends Base {
 
     private static Logger Log = LogManager.getLogger(LoginLogout.class.getName());
 
@@ -20,10 +20,11 @@ public class LoginLogout extends Base {
 
         // Browser Initialization from Base Class
         BrowserInitial();
-        Log.info("Browser launched and URL entered");
+        Log.info("MIPS Application Launched and Home page displayed");
+
     }
 
-    @Test(priority = 0)
+    @BeforeClass
     public void loginMIPS() {
 
         // QPP qppHomePage
@@ -51,29 +52,42 @@ public class LoginLogout extends Base {
         l.getSignin().click();
         Log.info("Click action performed on Signin button");
 
-        // Account Dashboard
+    }
+
+    @Test
+    public void textAccount() {
+
         C_AccountDashboard a = new C_AccountDashboard(driver);
         Log.info("Account Dashboard displayed");
 
+        //Verify the text "Account Dashboard" presented in the page
+        try {
+            Assert.assertEquals(a.assertAccountTxt().getText(), "Account Dashboard");
+            Log.info("The page contains the text Account Dashboard");
+
+        } catch (Exception e) {
+            Log.error("The page doesn't contains the text Account Dashboard");
+        }
+
     }
 
-        @Test(priority = 1)
+    @AfterClass
+    public void logoutMIPS() {
 
-        public void logoutMIPS() {
+        C_AccountDashboard a = new C_AccountDashboard(driver);
+        Log.info("Account Dashboard displayed");
 
-            C_AccountDashboard a = new C_AccountDashboard(driver);
+        // Logout
+        a.getMyAccount().click();
+        Log.info("Click action performed on MyAccount header link");
 
-            // Logout
-            a.getMyAccount().click();
-            Log.info("Click action performed on MyAccount header link");
+        a.getLogout().click();
+        Log.info("Click action performed on Sign out link");
 
-            a.getLogout().click();
-            Log.info("Click action performed on Sign out link");
+        a.getConfirmLogout().click();
+        Log.info("Sign out confirmation");
 
-            a.getConfirmLogout().click();
-            Log.info("Sign out confirmation");
-
-        }
+    }
 
     @AfterTest
     public void closingBrowser() throws InterruptedException {
@@ -82,7 +96,7 @@ public class LoginLogout extends Base {
         // Browser closing
         driver.close();
         Log.info("Browser closed");
-        driver=null;
+        driver = null;
 
     }
 }

@@ -2,17 +2,15 @@ package mips_SubmissionUI;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.annotations.*;
 import pack_PageObject.A_HomePage;
 import pack_PageObject.B_LoginPage;
 import pack_PageObject.C_AccountDashboard;
 import resources.Base;
-import org.testng.annotations.*;
 
 import java.io.IOException;
 
-
-public class LoginLogout extends Base {
-
+public class SidebarCollapse_Expand extends Base{
     private static Logger Log = LogManager.getLogger(LoginLogout.class.getName());
 
     @BeforeTest
@@ -20,10 +18,11 @@ public class LoginLogout extends Base {
 
         // Browser Initialization from Base Class
         BrowserInitial();
-        Log.info("Browser launched and URL entered");
+        Log.info("MIPS Application Launched and Home page displayed");
+
     }
 
-    @Test(priority = 0)
+    @BeforeClass
     public void loginMIPS() {
 
         // QPP qppHomePage
@@ -51,29 +50,49 @@ public class LoginLogout extends Base {
         l.getSignin().click();
         Log.info("Click action performed on Signin button");
 
-        // Account Dashboard
+    }
+
+    @Test(priority = 4)
+    public void sidebarCollapse() {
+
         C_AccountDashboard a = new C_AccountDashboard(driver);
         Log.info("Account Dashboard displayed");
 
+        // Make Sidebar Collapse
+        a.getCollapseButton().click();
+        Log.info("Click action performed on Sidebar Collapse button");
+
     }
 
-        @Test(priority = 1)
+    @Test(priority = 5)
+    public void sidebarExpand() {
 
-        public void logoutMIPS() {
+        C_AccountDashboard a = new C_AccountDashboard(driver);
+        Log.info("Account Dashboard displayed");
 
-            C_AccountDashboard a = new C_AccountDashboard(driver);
+        // Make Sidebar Expand
+        a.getExpandButton().click();
+        Log.info("Click action performed on Sidebar Expand button");
 
-            // Logout
-            a.getMyAccount().click();
-            Log.info("Click action performed on MyAccount header link");
+    }
 
-            a.getLogout().click();
-            Log.info("Click action performed on Sign out link");
+    @AfterClass
+    public void logoutMIPS() {
 
-            a.getConfirmLogout().click();
-            Log.info("Sign out confirmation");
+        C_AccountDashboard a = new C_AccountDashboard(driver);
+        Log.info("Account Dashboard displayed");
 
-        }
+        // Logout
+        a.getMyAccount().click();
+        Log.info("Click action performed on MyAccount header link");
+
+        a.getLogout().click();
+        Log.info("Click action performed on Sign out link");
+
+        a.getConfirmLogout().click();
+        Log.info("Sign out confirmation");
+
+    }
 
     @AfterTest
     public void closingBrowser() throws InterruptedException {
@@ -82,7 +101,8 @@ public class LoginLogout extends Base {
         // Browser closing
         driver.close();
         Log.info("Browser closed");
-        driver=null;
+        driver = null;
 
     }
 }
+
