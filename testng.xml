@@ -13,14 +13,29 @@
             <class name="mips_SubmissionUI.LoginLogout"/>
         </classes>
     </test>
-    <test name="Validation Page Navigation across MIPS Application">
+    <test name="Validate Page Navigation across MIPS Application">
         <classes>
             <class name="mips_SubmissionUI.PageNavigationTest"/>
         </classes>
     </test>
-    <test name="Validation elements presented on Account Dashboard">
+    <test name="Validate Logos in the Account Dashboard">
         <classes>
             <class name="mips_SubmissionUI.AdashLogoVerification"/>
+        </classes>
+    </test>
+    <test name="Assert the text Account Dashboard">
+        <classes>
+            <class name="mips_SubmissionUI.AdashTextAssertion"/>
+        </classes>
+    </test>
+    <test name="Validate Group and Individual Reporting links">
+        <classes>
+            <class name="mips_SubmissionUI.AdashReportingLinks"/>
+        </classes>
+    </test>
+    <test name="Validate Collapse/Expand button on the sidebar">
+        <classes>
+            <class name="mips_SubmissionUI.SidebarCollapse_Expand"/>
         </classes>
     </test>
 

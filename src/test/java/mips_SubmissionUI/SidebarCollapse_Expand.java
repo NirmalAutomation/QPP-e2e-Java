@@ -10,7 +10,7 @@ import resources.Base;
 
 import java.io.IOException;
 
-public class SidebarCollapse_Expand extends Base{
+public class SidebarCollapse_Expand extends Base {
     private static Logger Log = LogManager.getLogger(LoginLogout.class.getName());
 
     @BeforeTest
@@ -25,26 +25,9 @@ public class SidebarCollapse_Expand extends Base{
     @BeforeClass
     public void loginMIPS() {
 
-        // QPP qppHomePage
-        A_HomePage h = new A_HomePage(driver);
-        Log.info("MIPS Home page displayed");
-
-        h.getSignin().click();
-        Log.info("Click action performed on My Signin link");
-
         // QPP LoginPage
         B_LoginPage l = new B_LoginPage(driver);
         Log.info("Login page displayed");
-
-        // Entering valid Username and Password
-        l.getEmailId().sendKeys(prop.getProperty("username"));
-        Log.info("Username entered in the Username text box");
-
-        l.getPassword().sendKeys(prop.getProperty("password"));
-        Log.info("Password entered in the Password text box");
-
-        l.yesAgreeCheckbox().click();
-        Log.info("Check on Yes, I agree");
 
         // QPP Account Login
         l.getSignin().click();
@@ -52,25 +35,27 @@ public class SidebarCollapse_Expand extends Base{
 
     }
 
-    @Test(priority = 4)
-    public void sidebarCollapse() {
+    @Test(priority = 0)
+    public void sidebarCollapse() throws InterruptedException {
 
         C_AccountDashboard a = new C_AccountDashboard(driver);
         Log.info("Account Dashboard displayed");
 
         // Make Sidebar Collapse
+        Thread.sleep(1000);
         a.getCollapseButton().click();
         Log.info("Click action performed on Sidebar Collapse button");
 
     }
 
-    @Test(priority = 5)
-    public void sidebarExpand() {
+    @Test(priority = 1)
+    public void sidebarExpand() throws InterruptedException {
 
         C_AccountDashboard a = new C_AccountDashboard(driver);
         Log.info("Account Dashboard displayed");
 
         // Make Sidebar Expand
+        Thread.sleep(1000);
         a.getExpandButton().click();
         Log.info("Click action performed on Sidebar Expand button");
 

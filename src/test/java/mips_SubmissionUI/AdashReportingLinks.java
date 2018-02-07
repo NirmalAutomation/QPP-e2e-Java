@@ -24,39 +24,24 @@ public class AdashReportingLinks extends Base {
     @BeforeClass
     public void loginMIPS() {
 
-        // QPP qppHomePage
-        A_HomePage h = new A_HomePage(driver);
-        Log.info("MIPS Home page displayed");
-
-        h.getSignin().click();
-        Log.info("Click action performed on My Signin link");
-
         // QPP LoginPage
         B_LoginPage l = new B_LoginPage(driver);
         Log.info("Login page displayed");
 
-        // Entering valid Username and Password
-        l.getEmailId().sendKeys(prop.getProperty("username"));
-        Log.info("Username entered in the Username text box");
-
-        l.getPassword().sendKeys(prop.getProperty("password"));
-        Log.info("Password entered in the Password text box");
-
-        l.yesAgreeCheckbox().click();
-        Log.info("Check on Yes, I agree");
-
         // QPP Account Login
         l.getSignin().click();
         Log.info("Click action performed on Signin button");
+
     }
 
     @Test(priority = 0)
-    public void groupReportingLink() {
+    public void groupReportingLink() throws InterruptedException {
 
         C_AccountDashboard a = new C_AccountDashboard(driver);
         Log.info("Account Dashboard displayed");
 
         // Report as Group User
+        Thread.sleep(1000);
         a.getGroup().click();
         Log.info("Click action performed on Group Reporting button");
 
@@ -71,15 +56,19 @@ public class AdashReportingLinks extends Base {
         } catch (Exception e) {
             Log.error("The page doesn't contains the Group Reporting Dashboard");
         }
+
+        // Navigate to Account Dashboard
+        g.getAccountDashboard().click();
     }
 
     @Test(priority = 1)
-    public void individualReportingLink() {
+    public void individualReportingLink() throws InterruptedException {
 
         C_AccountDashboard a = new C_AccountDashboard(driver);
         Log.info("Account Dashboard displayed");
 
         // Report as Individual User
+        Thread.sleep(1000);
         a.getIndividual().click();
         Log.info("Click action performed on Individual Reporting button");
 

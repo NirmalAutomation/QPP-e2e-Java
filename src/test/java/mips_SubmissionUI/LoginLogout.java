@@ -21,31 +21,16 @@ public class LoginLogout extends Base {
         // Browser Initialization from Base Class
         BrowserInitial();
         Log.info("Browser launched and URL entered");
+
     }
 
     @Test(priority = 0)
+
     public void loginMIPS() {
-
-        // QPP qppHomePage
-        A_HomePage h = new A_HomePage(driver);
-        Log.info("MIPS Home page displayed");
-
-        h.getSignin().click();
-        Log.info("Click action performed on My Signin link");
 
         // QPP LoginPage
         B_LoginPage l = new B_LoginPage(driver);
         Log.info("Login page displayed");
-
-        // Entering valid Username and Password
-        l.getEmailId().sendKeys(prop.getProperty("username"));
-        Log.info("Username entered in the Username text box");
-
-        l.getPassword().sendKeys(prop.getProperty("password"));
-        Log.info("Password entered in the Password text box");
-
-        l.yesAgreeCheckbox().click();
-        Log.info("Check on Yes, I agree");
 
         // QPP Account Login
         l.getSignin().click();
@@ -57,23 +42,24 @@ public class LoginLogout extends Base {
 
     }
 
-        @Test(priority = 1)
+    @Test(priority = 1)
 
-        public void logoutMIPS() {
+    public void logoutMIS() throws InterruptedException {
 
-            C_AccountDashboard a = new C_AccountDashboard(driver);
+        C_AccountDashboard a = new C_AccountDashboard(driver);
 
-            // Logout
-            a.getMyAccount().click();
-            Log.info("Click action performed on MyAccount header link");
+        // Logout
+        a.getMyAccount().click();
+        Log.info("Click action performed on MyAccount header link");
 
-            a.getLogout().click();
-            Log.info("Click action performed on Sign out link");
+        Thread.sleep(1000);
+        a.getLogout().click();
+        Log.info("Click action performed on Sign out link");
 
-            a.getConfirmLogout().click();
-            Log.info("Sign out confirmation");
+        a.getConfirmLogout().click();
+        Log.info("Sign out confirmation");
 
-        }
+    }
 
     @AfterTest
     public void closingBrowser() throws InterruptedException {
@@ -82,7 +68,7 @@ public class LoginLogout extends Base {
         // Browser closing
         driver.close();
         Log.info("Browser closed");
-        driver=null;
+        driver = null;
 
     }
 }

@@ -27,26 +27,9 @@ public class AdashTextAssertion extends Base {
     @BeforeClass
     public void loginMIPS() {
 
-        // QPP qppHomePage
-        A_HomePage h = new A_HomePage(driver);
-        Log.info("MIPS Home page displayed");
-
-        h.getSignin().click();
-        Log.info("Click action performed on My Signin link");
-
         // QPP LoginPage
         B_LoginPage l = new B_LoginPage(driver);
         Log.info("Login page displayed");
-
-        // Entering valid Username and Password
-        l.getEmailId().sendKeys(prop.getProperty("username"));
-        Log.info("Username entered in the Username text box");
-
-        l.getPassword().sendKeys(prop.getProperty("password"));
-        Log.info("Password entered in the Password text box");
-
-        l.yesAgreeCheckbox().click();
-        Log.info("Check on Yes, I agree");
 
         // QPP Account Login
         l.getSignin().click();

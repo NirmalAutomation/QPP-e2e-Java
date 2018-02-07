@@ -24,26 +24,9 @@ public class PageNavigationTest extends Base {
     @BeforeClass
     public void loginMIPS() {
 
-        // QPP qppHomePage
-        A_HomePage h = new A_HomePage(driver);
-        Log.info("MIPS Home page displayed");
-
-        h.getSignin().click();
-        Log.info("Click action performed on My Signin link");
-
         // QPP LoginPage
         B_LoginPage l = new B_LoginPage(driver);
         Log.info("Login page displayed");
-
-        // Entering valid Username and Password
-        l.getEmailId().sendKeys(prop.getProperty("username"));
-        Log.info("Username entered in the Username text box");
-
-        l.getPassword().sendKeys(prop.getProperty("password"));
-        Log.info("Password entered in the Password text box");
-
-        l.yesAgreeCheckbox().click();
-        Log.info("Check on Yes, I agree");
 
         // QPP Account Login
         l.getSignin().click();
@@ -52,7 +35,7 @@ public class PageNavigationTest extends Base {
     }
 
     @Test
-    public void pageNavigation() {
+    public void pageNavigation() throws InterruptedException {
 
         // QPP AdashLogoVerification
         C_AccountDashboard a = new C_AccountDashboard(driver);
@@ -60,6 +43,7 @@ public class PageNavigationTest extends Base {
 
 
         // Navigate to Group Reporting Dashboard
+        Thread.sleep(1000);
         a.getGroup().click();
         Log.info("Click action performed on Group Reporting button");
 
@@ -68,6 +52,7 @@ public class PageNavigationTest extends Base {
         Log.info("Group Dashboard displayed");
 
         // Navigate to Quality page
+        Thread.sleep(1000);
         g.getQualityButton().click();
         Log.info("Click action performed on Quality link");
 
@@ -76,6 +61,7 @@ public class PageNavigationTest extends Base {
         Log.info("Quality Page displayed");
 
         // Navigate to ACI page
+        Thread.sleep(1000);
         q.getACI().click();
         Log.info("Click action performed on ACI link");
 
@@ -84,6 +70,7 @@ public class PageNavigationTest extends Base {
         Log.info("ACI Page displayed");
 
         // Navigate to IA page
+        Thread.sleep(1000);
         ac.getIA().click();
         Log.info("Click action performed on IA link");
 
@@ -100,17 +87,18 @@ public class PageNavigationTest extends Base {
     @AfterClass
     public void logoutMIPS() {
 
-        C_AccountDashboard a = new C_AccountDashboard(driver);
-        Log.info("Account Dashboard displayed");
+        // IA page
+        G_IAPage ia = new G_IAPage(driver);
+        Log.info("IA Page displayed");
 
         // Logout
-        a.getMyAccount().click();
+        ia.getMyAccount().click();
         Log.info("Click action performed on MyAccount header link");
 
-        a.getLogout().click();
+        ia.getLogout().click();
         Log.info("Click action performed on Sign out link");
 
-        a.getConfirmLogout().click();
+        ia.getConfirmLogout().click();
         Log.info("Sign out confirmation");
 
     }
@@ -122,6 +110,6 @@ public class PageNavigationTest extends Base {
         // Browser closing
         driver.close();
         Log.info("Browser closed");
-        driver=null;
+        driver = null;
     }
 }
