@@ -38,6 +38,7 @@ public class AdashLogoVerification extends Base {
     @Test(priority = 0)
     public void logoQPP() {
 
+        // Account Dashboard
         C_AccountDashboard a = new C_AccountDashboard(driver);
         Log.info("Account Dashboard displayed");
 
@@ -56,6 +57,7 @@ public class AdashLogoVerification extends Base {
     @Test(priority = 1)
     public void logoCMS() {
 
+        // Account Dashboard
         C_AccountDashboard a = new C_AccountDashboard(driver);
         Log.info("Account Dashboard displayed");
 
@@ -74,6 +76,7 @@ public class AdashLogoVerification extends Base {
     @AfterClass
     public void logoutMIPS() {
 
+        // Account Dashboard
         C_AccountDashboard a = new C_AccountDashboard(driver);
         Log.info("Account Dashboard displayed");
 

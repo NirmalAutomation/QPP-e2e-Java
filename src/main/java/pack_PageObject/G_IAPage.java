@@ -79,6 +79,9 @@ public class G_IAPage {
     @FindBy(xpath = "//button[@class='btn btn-default close-modal-btn']")
     WebElement closeFileUpload;
 
+    @FindBy(css = ".dropzone")
+    WebElement dragDropTxt;
+
     // c) Delete Category Data
     @FindBy(css = ".delete-measurement-set-button > button:nth-child(1)")
     WebElement deleteData;
@@ -96,6 +99,9 @@ public class G_IAPage {
     @FindBy(css = "#perf-btn")
     WebElement perfPopup;
 
+    @FindBy(css = ".popover-content")
+    WebElement helpPopupTxt;
+
     // 7. Improvement Activities Category Score
     @FindBy(css = ".score")
     WebElement IAScore;
@@ -105,8 +111,14 @@ public class G_IAPage {
     WebElement textActivities;
 
     // 9. Filters Drop-down button
-    @FindBy(css = "#filterLink")
+    @FindBy(css = ".fa-chevron-down")
     WebElement filtersDD;
+
+    @FindBy(id = "subcategories")
+    WebElement textSubCategories;
+
+    @FindBy(css = "div.col-lg-4:nth-child(2)")
+    WebElement textWeightCEHRT;
 
     // Filters Checkbox selection
     @FindBy(css = "#cbSc1-achievingHealthEquity")
@@ -142,6 +154,9 @@ public class G_IAPage {
     @FindBy(css = "#cbBs-true")
     WebElement cehrtEligible;
 
+    @FindBy(css = ".clear-filters")
+    WebElement clearAllFilters;
+
     // 10. Search IA Activities field
     @FindBy(css = ".search-field")
     WebElement searchActivities;
@@ -163,6 +178,10 @@ public class G_IAPage {
     // 13. Category Score Success
     @FindBy(css = ".score-info > div:nth-child(2)")
     WebElement categorySuccess;
+
+    // 14. IA Performance Period Yellow Banner
+    @FindBy(css = ".notification")
+    WebElement yellowBanner;
 
 
     // 1. Logos validation
@@ -249,6 +268,8 @@ public class G_IAPage {
         return closeFileUpload;
     }
 
+    public WebElement getDragDropTxt() { return dragDropTxt; }
+
     // c) Delete Category Data
     public WebElement openDeleteData() {
         return deleteData;
@@ -271,6 +292,8 @@ public class G_IAPage {
         return perfPopup;
     }
 
+    public WebElement getPopupTxt() { return helpPopupTxt; }
+
     // 7. Improvement Activities Category Score
     public WebElement getIAScore() {
         return IAScore;
@@ -285,6 +308,10 @@ public class G_IAPage {
     public WebElement openFiltersDD() {
         return filtersDD;
     }
+
+    public WebElement getSubCategoriesTxt() { return textSubCategories; }
+
+    public WebElement getTextWeightCEHRT() { return textWeightCEHRT; }
 
     // Filters Checkbox selection
     public WebElement getAchievingHealthEquity() {
@@ -331,6 +358,10 @@ public class G_IAPage {
         return cehrtEligible;
     }
 
+    public WebElement getClearAllFilters() {
+        return clearAllFilters;
+    }
+
     // 10. Search IA Activities field
     public WebElement accessIASearch() {
         return searchActivities;
@@ -358,6 +389,9 @@ public class G_IAPage {
     public WebElement getCategorySuccess() {
         return categorySuccess;
     }
+
+    // 14. IA Performance Period Yellow Banner
+    public WebElement getYellowBanner() { return yellowBanner; }
 }
 
 

@@ -2,13 +2,16 @@ package mips_SubmissionUI;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import pack_PageObject.*;
-import resources.Base;
 import org.testng.annotations.*;
+import pack_PageObject.B_LoginPage;
+import pack_PageObject.C_AccountDashboard;
+import pack_PageObject.D_GroupDashboard;
+import pack_PageObject.F_ACIPage;
+import resources.Base;
 
 import java.io.IOException;
 
-public class PageNavigationTest extends Base {
+public class ACIDate90More extends Base {
 
     private static Logger Log = LogManager.getLogger(LoginLogout.class.getName());
 
@@ -17,13 +20,11 @@ public class PageNavigationTest extends Base {
 
         // Browser Initialization from Base Class
         BrowserInitial();
-        Log.info("MIPS Application Launched and HomePage displayed");
-
+        Log.info("MIPS Application Launched and Home page displayed");
     }
 
     @BeforeClass
-    public void loginMIPS() {
-
+    public void loginMIPS() throws InterruptedException {
         // QPP LoginPage
         B_LoginPage l = new B_LoginPage(driver);
         Log.info("Login page displayed");
@@ -32,73 +33,57 @@ public class PageNavigationTest extends Base {
         l.getSignin().click();
         Log.info("Click action performed on Signin button");
 
-    }
-
-    @Test
-    public void pageNavigation() throws InterruptedException {
-
-        // QPP AdashLogoVerification
+        // Account Dashboard
         C_AccountDashboard a = new C_AccountDashboard(driver);
         Log.info("Account Dashboard displayed");
 
-
-        // Navigate to Group Reporting Dashboard
+        // Report as Group User
         Thread.sleep(1000);
         a.getGroup().click();
         Log.info("Click action performed on Group Reporting button");
 
-        // Group Reporting Dashboard
+        // Group Dashboard
         D_GroupDashboard g = new D_GroupDashboard(driver);
         Log.info("Group Dashboard displayed");
 
-        // Navigate to Quality page
-        Thread.sleep(1000);
-        g.getQualityButton().click();
-        Log.info("Click action performed on Quality link");
+        // ACI Reporting Button
+        g.getACIButton().click();
+        Log.info("Click action performed on ACI Reporting button");
 
-        // Quality page
-        E_QualityPage q = new E_QualityPage(driver);
-        Log.info("Quality Page displayed");
+    }
 
-        // Navigate to ACI page
-        Thread.sleep(1000);
-        q.getACI().click();
-        Log.info("Click action performed on ACI link");
+    @Test
+    public void morethan90Days() {
 
-        // ACI page
+        // ACI Page displayed
         F_ACIPage ac = new F_ACIPage(driver);
         Log.info("ACI Page displayed");
 
-        // Navigate to IA page
-        Thread.sleep(1000);
-        ac.getIA().click();
-        Log.info("Click action performed on IA link");
+        // IA Performance Period Manual Entry more than 90 days
+        ac.enterStartDate().sendKeys("01/01/2017");
+        Log.info("Enter a valid Start date");
 
-        // IA page
-        G_IAPage ia = new G_IAPage(driver);
-        Log.info("IA Page displayed");
-
-        // Header element "My Account"
-        ia.getAccountDashboard().click();
-        Log.info("Click action performed on Account Dashboard link");
+        ac.enterEndDate().sendKeys("03/31/2017");
+        Log.info("Enter a valid End date");
 
     }
 
     @AfterClass
-    public void logoutMIPS() {
+    public void logoutMIPS() throws InterruptedException {
 
-        // IA page
-        G_IAPage ia = new G_IAPage(driver);
-        Log.info("IA Page displayed");
+        // ACI Page displayed
+        Thread.sleep(1000);
+        F_ACIPage ac = new F_ACIPage(driver);
+        Log.info("ACI Page displayed");
 
         // Logout
-        ia.getMyAccount().click();
+        ac.getMyAccount().click();
         Log.info("Click action performed on MyAccount header link");
 
-        ia.getLogout().click();
+        ac.getLogout().click();
         Log.info("Click action performed on Sign out link");
 
-        ia.getConfirmLogout().click();
+        ac.getConfirmLogout().click();
         Log.info("Sign out confirmation");
 
     }
@@ -111,5 +96,6 @@ public class PageNavigationTest extends Base {
         driver.close();
         Log.info("Browser closed");
         driver = null;
+
     }
 }

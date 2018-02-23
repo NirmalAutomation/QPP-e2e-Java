@@ -3,18 +3,19 @@ package mips_SubmissionUI;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.*;
 import pack_PageObject.*;
 import resources.Base;
-import org.testng.annotations.*;
 
 import java.io.IOException;
 
-public class AdashReportingLinks extends Base {
+public class IAReportingBtn extends Base{
 
     private static Logger Log = LogManager.getLogger(LoginLogout.class.getName());
 
     @BeforeTest
     public void initializingBrowser() throws IOException {
+
         // Browser Initialization from Base Class
         BrowserInitial();
         Log.info("MIPS Application Launched and Home page displayed");
@@ -34,9 +35,10 @@ public class AdashReportingLinks extends Base {
 
     }
 
-    @Test(priority = 0)
-    public void groupReportingLink() throws InterruptedException {
+    @Test
+    public void iaReportingBtn() throws InterruptedException {
 
+        // Account Dashboard
         C_AccountDashboard a = new C_AccountDashboard(driver);
         Log.info("Account Dashboard displayed");
 
@@ -45,60 +47,44 @@ public class AdashReportingLinks extends Base {
         a.getGroup().click();
         Log.info("Click action performed on Group Reporting button");
 
+        // Group Dashboard
         D_GroupDashboard g = new D_GroupDashboard(driver);
         Log.info("Group Dashboard displayed");
 
-        // Verify the text "Group Reporting Dashboard" presented in the page
+        // IA Reporting Button
+        g.getIAButton().click();
+        Log.info("Click action performed on IA Reporting button");
+
+        // IA Page displayed
+        G_IAPage ia = new G_IAPage(driver);
+        Log.info("Improvement Activities Page displayed");
+
+        // Verify the text "Improvement Activities" presented in the page
         try {
-            Assert.assertEquals(g.assertGroupTxt().getText(), "Group Reporting Dashboard");
-            Log.info("The page contains the text Group Reporting Dashboard");
+            Assert.assertEquals(ia.assertIATxt().getText(), "Improvement Activities");
+            Log.info("The page contains the text Improvement Activities");
 
         } catch (Exception e) {
-            Log.error("The page doesn't contains the Group Reporting Dashboard");
+            Log.error("The page doesn't contains the text Improvement Activities");
         }
 
-        // Navigate to Account Dashboard
-        g.getAccountDashboard().click();
-    }
-
-    @Test(priority = 1)
-    public void individualReportingLink() throws InterruptedException {
-
-        C_AccountDashboard a = new C_AccountDashboard(driver);
-        Log.info("Account Dashboard displayed");
-
-        // Report as Individual User
-        Thread.sleep(1000);
-        a.getIndividual().click();
-        Log.info("Click action performed on Individual Reporting button");
-
-        H_ConnectedClinicians c = new H_ConnectedClinicians(driver);
-        Log.info("Clinical Clinicians displayed");
-
-        // Verify the text "Connected Clinicians" presented in the page
-        try {
-            Thread.sleep(1000);
-            Assert.assertEquals(c.assertCliniciansTxt().getText(), "Connected Clinicians");
-            Log.info("The page contains the text Connected Clinicians Dashboard");
-
-        } catch (Exception e) {
-            Log.error("The page doesn't contains the Connected Clinicians Dashboard");
-        }
     }
 
     @AfterClass
     public void logoutMIPS() {
-        C_AccountDashboard a = new C_AccountDashboard(driver);
-        Log.info("Account Dashboard displayed");
+
+        // IA Page displayed
+        G_IAPage ia = new G_IAPage(driver);
+        Log.info("Improvement Activities Page displayed");
 
         // Logout
-        a.getMyAccount().click();
+        ia.getMyAccount().click();
         Log.info("Click action performed on MyAccount header link");
 
-        a.getLogout().click();
+        ia.getLogout().click();
         Log.info("Click action performed on Sign out link");
 
-        a.getConfirmLogout().click();
+        ia.getConfirmLogout().click();
         Log.info("Sign out confirmation");
 
     }
@@ -111,6 +97,7 @@ public class AdashReportingLinks extends Base {
         driver.close();
         Log.info("Browser closed");
         driver = null;
+
     }
 
 }

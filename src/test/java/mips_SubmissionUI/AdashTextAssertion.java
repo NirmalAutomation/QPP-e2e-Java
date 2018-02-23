@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import pack_PageObject.A_HomePage;
 import pack_PageObject.B_LoginPage;
 import pack_PageObject.C_AccountDashboard;
 import resources.Base;
@@ -40,6 +39,7 @@ public class AdashTextAssertion extends Base {
     @Test
     public void textAccount() {
 
+        // Account Dashboard
         C_AccountDashboard a = new C_AccountDashboard(driver);
         Log.info("Account Dashboard displayed");
 
@@ -57,6 +57,7 @@ public class AdashTextAssertion extends Base {
     @AfterClass
     public void logoutMIPS() {
 
+        // Account Dashboard
         C_AccountDashboard a = new C_AccountDashboard(driver);
         Log.info("Account Dashboard displayed");
 

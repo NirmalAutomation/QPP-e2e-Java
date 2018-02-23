@@ -80,6 +80,9 @@ public class E_QualityPage {
     @FindBy(xpath = "//button[@class='btn btn-default close-modal-btn']")
     WebElement closeFileUpload;
 
+    @FindBy(css = ".dropzone")
+    WebElement dragDropTxt;
+
     // c) Delete Category Data
     @FindBy(linkText = "Delete Category Data")
     WebElement deleteData;
@@ -163,6 +166,8 @@ public class E_QualityPage {
     public WebElement openFileUpload() {
         return openFileUpload;
     }
+
+    public WebElement getDragDropTxt() { return dragDropTxt; }
 
     public WebElement closeFileUpload() {
         return closeFileUpload;

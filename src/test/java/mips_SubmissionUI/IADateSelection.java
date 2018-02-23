@@ -5,11 +5,14 @@ import org.apache.logging.log4j.Logger;
 import org.testng.annotations.*;
 import pack_PageObject.B_LoginPage;
 import pack_PageObject.C_AccountDashboard;
+import pack_PageObject.D_GroupDashboard;
+import pack_PageObject.G_IAPage;
 import resources.Base;
 
 import java.io.IOException;
 
-public class SidebarCollapse_Expand extends Base {
+public class IADateSelection extends Base {
+
     private static Logger Log = LogManager.getLogger(LoginLogout.class.getName());
 
     @BeforeTest
@@ -18,12 +21,10 @@ public class SidebarCollapse_Expand extends Base {
         // Browser Initialization from Base Class
         BrowserInitial();
         Log.info("MIPS Application Launched and Home page displayed");
-
     }
 
     @BeforeClass
-    public void loginMIPS() {
-
+    public void loginMIPS() throws InterruptedException {
         // QPP LoginPage
         B_LoginPage l = new B_LoginPage(driver);
         Log.info("Login page displayed");
@@ -32,57 +33,63 @@ public class SidebarCollapse_Expand extends Base {
         l.getSignin().click();
         Log.info("Click action performed on Signin button");
 
-    }
-
-    @Test(priority = 0)
-    public void sidebarCollapse() throws InterruptedException {
-
         // Account Dashboard
         C_AccountDashboard a = new C_AccountDashboard(driver);
         Log.info("Account Dashboard displayed");
 
-        // Make Sidebar Collapse
+        // Report as Group User
         Thread.sleep(1000);
-        a.getCollapseButton().click();
-        Log.info("Click action performed on Sidebar Collapse button");
+        a.getGroup().click();
+        Log.info("Click action performed on Group Reporting button");
+
+        // Group Dashboard
+        D_GroupDashboard g = new D_GroupDashboard(driver);
+        Log.info("Group Dashboard displayed");
+
+        // IA Reporting Button
+        g.getIAButton().click();
+        Log.info("Click action performed on IA Reporting button");
 
     }
 
-    @Test(priority = 1)
-    public void sidebarExpand() throws InterruptedException {
+    @Test
+    public void IADateEntering () throws InterruptedException {
 
-        // Account Dashboard
-        C_AccountDashboard a = new C_AccountDashboard(driver);
-        Log.info("Account Dashboard displayed");
+        // IA Page displayed
+        G_IAPage ia = new G_IAPage(driver);
+        Log.info("IA Page displayed");
 
-        // Make Sidebar Expand
-        Thread.sleep(1000);
-        a.getExpandButton().click();
-        Log.info("Click action performed on Sidebar Expand button");
+        // IA Performance Period Manual Entry
+        ia.enterStartDate().sendKeys("01/01/2017");
+        Log.info("Enter a valid Start date");
+
+        ia.enterEndDate().sendKeys("01/02/2017");
+        Log.info("Enter a valid End date");
 
     }
 
     @AfterClass
-    public void logoutMIPS() {
+    public void logoutMIPS () throws InterruptedException {
 
-        // Account Dashboard
-        C_AccountDashboard a = new C_AccountDashboard(driver);
-        Log.info("Account Dashboard displayed");
+        // IA Page displayed
+        Thread.sleep(1000);
+        G_IAPage ia = new G_IAPage(driver);
+        Log.info("IA Page displayed");
 
         // Logout
-        a.getMyAccount().click();
+        ia.getMyAccount().click();
         Log.info("Click action performed on MyAccount header link");
 
-        a.getLogout().click();
+        ia.getLogout().click();
         Log.info("Click action performed on Sign out link");
 
-        a.getConfirmLogout().click();
+        ia.getConfirmLogout().click();
         Log.info("Sign out confirmation");
 
     }
 
     @AfterTest
-    public void closingBrowser() throws InterruptedException {
+    public void closingBrowser () throws InterruptedException {
 
         Thread.sleep(1000);
         // Browser closing
@@ -91,5 +98,5 @@ public class SidebarCollapse_Expand extends Base {
         driver = null;
 
     }
-}
 
+}

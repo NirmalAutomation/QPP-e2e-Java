@@ -2,19 +2,19 @@ package mips_SubmissionUI;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.annotations.*;
-import pack_PageObject.B_LoginPage;
-import pack_PageObject.C_AccountDashboard;
+import org.testng.Assert;
+import pack_PageObject.*;
 import resources.Base;
+import org.testng.annotations.*;
 
 import java.io.IOException;
 
-public class SidebarCollapse_Expand extends Base {
+public class ReportingPages extends Base {
+
     private static Logger Log = LogManager.getLogger(LoginLogout.class.getName());
 
     @BeforeTest
     public void initializingBrowser() throws IOException {
-
         // Browser Initialization from Base Class
         BrowserInitial();
         Log.info("MIPS Application Launched and Home page displayed");
@@ -35,37 +35,63 @@ public class SidebarCollapse_Expand extends Base {
     }
 
     @Test(priority = 0)
-    public void sidebarCollapse() throws InterruptedException {
+    public void groupReportingLink() throws InterruptedException {
 
         // Account Dashboard
         C_AccountDashboard a = new C_AccountDashboard(driver);
         Log.info("Account Dashboard displayed");
 
-        // Make Sidebar Collapse
+        // Report as Group User
         Thread.sleep(1000);
-        a.getCollapseButton().click();
-        Log.info("Click action performed on Sidebar Collapse button");
+        a.getGroup().click();
+        Log.info("Click action performed on Group Reporting button");
 
+        // Group Dashboard
+        D_GroupDashboard g = new D_GroupDashboard(driver);
+        Log.info("Group Dashboard displayed");
+
+        // Verify the text "Group Reporting Dashboard" presented in the page
+        try {
+            Assert.assertEquals(g.assertGroupTxt().getText(), "Group Reporting Dashboard");
+            Log.info("The page contains the text Group Reporting Dashboard");
+
+        } catch (Exception e) {
+            Log.error("The page doesn't contains the Group Reporting Dashboard");
+        }
+
+        // Navigate to Account Dashboard
+        g.getAccountDashboard().click();
     }
 
     @Test(priority = 1)
-    public void sidebarExpand() throws InterruptedException {
+    public void individualReportingLink() throws InterruptedException {
 
         // Account Dashboard
         C_AccountDashboard a = new C_AccountDashboard(driver);
         Log.info("Account Dashboard displayed");
 
-        // Make Sidebar Expand
+        // Report as Individual User
         Thread.sleep(1000);
-        a.getExpandButton().click();
-        Log.info("Click action performed on Sidebar Expand button");
+        a.getIndividual().click();
+        Log.info("Click action performed on Individual Reporting button");
 
+        // Individual Dashboard "Connected Clinicians"
+        H_ConnectedClinicians c = new H_ConnectedClinicians(driver);
+        Log.info("Clinical Clinicians displayed");
+
+        // Verify the text "Connected Clinicians" presented in the page
+        try {
+            Thread.sleep(1000);
+            Assert.assertEquals(c.assertCliniciansTxt().getText(), "Connected Clinicians");
+            Log.info("The page contains the text Connected Clinicians Dashboard");
+
+        } catch (Exception e) {
+            Log.error("The page doesn't contains the Connected Clinicians Dashboard");
+        }
     }
 
     @AfterClass
     public void logoutMIPS() {
-
-        // Account Dashboard
         C_AccountDashboard a = new C_AccountDashboard(driver);
         Log.info("Account Dashboard displayed");
 
@@ -89,7 +115,6 @@ public class SidebarCollapse_Expand extends Base {
         driver.close();
         Log.info("Browser closed");
         driver = null;
-
     }
-}
 
+}

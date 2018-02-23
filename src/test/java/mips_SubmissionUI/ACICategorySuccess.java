@@ -2,14 +2,18 @@ package mips_SubmissionUI;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.Assert;
 import org.testng.annotations.*;
 import pack_PageObject.B_LoginPage;
 import pack_PageObject.C_AccountDashboard;
+import pack_PageObject.D_GroupDashboard;
+import pack_PageObject.F_ACIPage;
 import resources.Base;
 
 import java.io.IOException;
 
-public class SidebarCollapse_Expand extends Base {
+public class ACICategorySuccess extends Base {
+
     private static Logger Log = LogManager.getLogger(LoginLogout.class.getName());
 
     @BeforeTest
@@ -18,12 +22,10 @@ public class SidebarCollapse_Expand extends Base {
         // Browser Initialization from Base Class
         BrowserInitial();
         Log.info("MIPS Application Launched and Home page displayed");
-
     }
 
     @BeforeClass
-    public void loginMIPS() {
-
+    public void loginMIPS() throws InterruptedException {
         // QPP LoginPage
         B_LoginPage l = new B_LoginPage(driver);
         Log.info("Login page displayed");
@@ -32,51 +34,58 @@ public class SidebarCollapse_Expand extends Base {
         l.getSignin().click();
         Log.info("Click action performed on Signin button");
 
-    }
-
-    @Test(priority = 0)
-    public void sidebarCollapse() throws InterruptedException {
-
         // Account Dashboard
         C_AccountDashboard a = new C_AccountDashboard(driver);
         Log.info("Account Dashboard displayed");
 
-        // Make Sidebar Collapse
+        // Report as Group User
         Thread.sleep(1000);
-        a.getCollapseButton().click();
-        Log.info("Click action performed on Sidebar Collapse button");
+        a.getGroup().click();
+        Log.info("Click action performed on Group Reporting button");
+
+        // Group Dashboard
+        D_GroupDashboard g = new D_GroupDashboard(driver);
+        Log.info("Group Dashboard displayed");
+
+        // ACI Reporting Button
+        g.getACIButton().click();
+        Log.info("Click action performed on ACI Reporting button");
 
     }
 
-    @Test(priority = 1)
-    public void sidebarExpand() throws InterruptedException {
+    @Test
+    public void aciCategorySuccess() throws InterruptedException {
 
-        // Account Dashboard
-        C_AccountDashboard a = new C_AccountDashboard(driver);
-        Log.info("Account Dashboard displayed");
+        // ACI Page displayed
+        F_ACIPage ac = new F_ACIPage(driver);
+        Log.info("ACI Page displayed");
 
-        // Make Sidebar Expand
-        Thread.sleep(1000);
-        a.getExpandButton().click();
-        Log.info("Click action performed on Sidebar Expand button");
+        // Category Success!
+        try {
+            Assert.assertEquals(ac.getCategorySuccess().getText(), "Category Success!");
+            Log.info("The page displays Category Success");
+        } catch (Exception g) {
+            Log.error("The page doesn't display Category Success");
+        }
 
     }
 
     @AfterClass
-    public void logoutMIPS() {
+    public void logoutMIPS() throws InterruptedException {
 
-        // Account Dashboard
-        C_AccountDashboard a = new C_AccountDashboard(driver);
-        Log.info("Account Dashboard displayed");
+        // ACI Page displayed
+        Thread.sleep(1000);
+        F_ACIPage ac = new F_ACIPage(driver);
+        Log.info("ACI Page displayed");
 
         // Logout
-        a.getMyAccount().click();
+        ac.getMyAccount().click();
         Log.info("Click action performed on MyAccount header link");
 
-        a.getLogout().click();
+        ac.getLogout().click();
         Log.info("Click action performed on Sign out link");
 
-        a.getConfirmLogout().click();
+        ac.getConfirmLogout().click();
         Log.info("Sign out confirmation");
 
     }
@@ -91,5 +100,5 @@ public class SidebarCollapse_Expand extends Base {
         driver = null;
 
     }
-}
 
+}

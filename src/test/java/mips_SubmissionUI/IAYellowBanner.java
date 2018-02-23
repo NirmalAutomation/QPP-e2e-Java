@@ -2,14 +2,18 @@ package mips_SubmissionUI;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.Assert;
 import org.testng.annotations.*;
 import pack_PageObject.B_LoginPage;
 import pack_PageObject.C_AccountDashboard;
+import pack_PageObject.D_GroupDashboard;
+import pack_PageObject.G_IAPage;
 import resources.Base;
 
 import java.io.IOException;
 
-public class SidebarCollapse_Expand extends Base {
+public class IAYellowBanner extends Base {
+
     private static Logger Log = LogManager.getLogger(LoginLogout.class.getName());
 
     @BeforeTest
@@ -18,12 +22,10 @@ public class SidebarCollapse_Expand extends Base {
         // Browser Initialization from Base Class
         BrowserInitial();
         Log.info("MIPS Application Launched and Home page displayed");
-
     }
 
     @BeforeClass
     public void loginMIPS() {
-
         // QPP LoginPage
         B_LoginPage l = new B_LoginPage(driver);
         Log.info("Login page displayed");
@@ -34,49 +36,55 @@ public class SidebarCollapse_Expand extends Base {
 
     }
 
-    @Test(priority = 0)
-    public void sidebarCollapse() throws InterruptedException {
-
+    @Test
+    public void deleteCategoryData() throws InterruptedException {
         // Account Dashboard
         C_AccountDashboard a = new C_AccountDashboard(driver);
         Log.info("Account Dashboard displayed");
 
-        // Make Sidebar Collapse
+        // Report as Group User
         Thread.sleep(1000);
-        a.getCollapseButton().click();
-        Log.info("Click action performed on Sidebar Collapse button");
+        a.getGroup().click();
+        Log.info("Click action performed on Group Reporting button");
 
-    }
+        // Group Dashboard
+        D_GroupDashboard g = new D_GroupDashboard(driver);
+        Log.info("Group Dashboard displayed");
 
-    @Test(priority = 1)
-    public void sidebarExpand() throws InterruptedException {
+        // IA Reporting Button
+        g.getIAButton().click();
+        Log.info("Click action performed on IA Reporting button");
 
-        // Account Dashboard
-        C_AccountDashboard a = new C_AccountDashboard(driver);
-        Log.info("Account Dashboard displayed");
+        // IA Page displayed
+        G_IAPage ia = new G_IAPage(driver);
+        Log.info("IA Page displayed");
 
-        // Make Sidebar Expand
-        Thread.sleep(1000);
-        a.getExpandButton().click();
-        Log.info("Click action performed on Sidebar Expand button");
+        try {
+            Assert.assertEquals(ia.getYellowBanner().getText(), "You will be unable to attest to the Improvement Activities until a performance period date range is entered above.");
+            Log.info("The page contains the IA Yellow Banner");
+
+        } catch (Exception e) {
+            Log.error("The page doesn't contains the IA Yellow Banner");
+        }
 
     }
 
     @AfterClass
-    public void logoutMIPS() {
+    public void logoutMIPS() throws InterruptedException {
 
-        // Account Dashboard
-        C_AccountDashboard a = new C_AccountDashboard(driver);
-        Log.info("Account Dashboard displayed");
+        // IA Page displayed
+        Thread.sleep(1000);
+        G_IAPage ia = new G_IAPage(driver);
+        Log.info("IA Page displayed");
 
         // Logout
-        a.getMyAccount().click();
+        ia.getMyAccount().click();
         Log.info("Click action performed on MyAccount header link");
 
-        a.getLogout().click();
+        ia.getLogout().click();
         Log.info("Click action performed on Sign out link");
 
-        a.getConfirmLogout().click();
+        ia.getConfirmLogout().click();
         Log.info("Sign out confirmation");
 
     }
@@ -92,4 +100,3 @@ public class SidebarCollapse_Expand extends Base {
 
     }
 }
-

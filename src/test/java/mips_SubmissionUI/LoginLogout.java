@@ -2,7 +2,6 @@ package mips_SubmissionUI;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import pack_PageObject.A_HomePage;
 import pack_PageObject.B_LoginPage;
 import pack_PageObject.C_AccountDashboard;
 import resources.Base;
@@ -46,6 +45,7 @@ public class LoginLogout extends Base {
 
     public void logoutMIS() throws InterruptedException {
 
+        // Account Dashboard
         C_AccountDashboard a = new C_AccountDashboard(driver);
 
         // Logout
