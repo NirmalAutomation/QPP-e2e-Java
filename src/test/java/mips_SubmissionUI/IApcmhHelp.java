@@ -3,7 +3,6 @@ package mips_SubmissionUI;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
-import org.testng.Assert;
 import org.testng.annotations.*;
 import pack_PageObject.B_LoginPage;
 import pack_PageObject.C_AccountDashboard;
@@ -13,7 +12,8 @@ import resources.Base;
 
 import java.io.IOException;
 
-public class IAPopup extends Base {
+public class IApcmhHelp extends Base {
+
     private static Logger Log = LogManager.getLogger(LoginLogout.class.getName());
 
     @BeforeTest
@@ -50,31 +50,6 @@ public class IAPopup extends Base {
         // IA Reporting Button
         g.getIAButton().click();
         Log.info("Click action performed on IA Reporting button");
-
-    }
-
-    @Test(priority=0)
-    public void iaHelpPopup () {
-
-        // IA Page displayed
-        G_IAPage ia = new G_IAPage(driver);
-        Log.info("IA Page displayed");
-
-        // Opening the Performance Period Help Button
-        ia.getPerfHelp().click();
-        Log.info("Click action on Performance Period Help button to open");
-
-        // Verify the text presented in Performance period popup
-        try {
-            Assert.assertEquals(ia.getPopupTxt().getText(), "A Performance Period of at least 1 day or greater is required for the Improvement Activities category, other than the Patient Centered Medical Home attestation.");
-            Log.info("The popup contains the expected message");
-
-        } catch (Exception e) {
-            Log.error("The popup doesn't contain the expected message");
-        }
-
-        // Scrolling the page
-        ((JavascriptExecutor)driver).executeScript("scroll(0,400)");
 
     }
 

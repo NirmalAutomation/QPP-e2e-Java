@@ -142,101 +142,107 @@
 
     <test name="23) Validate IA Page Popup Buttons">
         <classes>
-            <class name="mips_SubmissionUI.IAPopup"/>
+            <class name="mips_SubmissionUI.IAPerfHelp"/>
         </classes>
     </test>
 
-    <test name="24) Validate ACI Read Full Instructions">
+    <test name="24) Validate IA Page Popup Buttons">
+        <classes>
+            <class name="mips_SubmissionUI.IApcmhHelp"/>
+        </classes>
+    </test>
+
+    <test name="25) Validate ACI Read Full Instructions">
         <classes>
             <class name="mips_SubmissionUI.ACIread"/>
         </classes>
     </test>
 
-    <test name="25) Validate ACI File Upload Button">
+    <test name="26) Validate ACI File Upload Button">
         <classes>
             <class name="mips_SubmissionUI.ACIUploadModal"/>
         </classes>
     </test>
 
-    <test name="26) Validate ACI Delete Category Data Button">
+    <test name="27) Validate ACI Delete Category Data Button">
         <classes>
             <class name="mips_SubmissionUI.ACIDataDeletion"/>
         </classes>
     </test>
 
-    <test name="27) Validate ACI Performance Period Yellow Banner Text">
+    <test name="28) Validate ACI Performance Period Yellow Banner Text">
         <classes>
             <class name="mips_SubmissionUI.ACIPerfYellow"/>
         </classes>
     </test>
 
-    <test name="28) Validate ACI Manual Performance Period Entry >90 days">
+    <test name="29) Validate ACI Manual Performance Period Entry >90 days">
         <classes>
             <class name="mips_SubmissionUI.ACIDate90More"/>
         </classes>
     </test>
 
-    <test name="29) Validate ACI Hide/Show Button">
+    <test name="30) Validate ACI Hide/Show Button">
         <classes>
             <class name="mips_SubmissionUI.ACIHide_Show"/>
         </classes>
     </test>
 
-    <test name="30) Validate ACI Track Selection">
+    <test name="31) Validate ACI Track Selection">
         <classes>
             <class name="mips_SubmissionUI.ACITrackSelection"/>
         </classes>
     </test>
 
-    <test name="31) Validate ACI Base Measure Yellow Banner Text">
+    <test name="32) Validate ACI Base Measure Yellow Banner Text">
         <classes>
             <class name="mips_SubmissionUI.ACIBaseYellow"/>
         </classes>
     </test>
 
-    <test name="32) Validate ACI Pre-Attestation selection">
+    <test name="33) Validate ACI Pre-Attestation selection">
         <classes>
             <class name="mips_SubmissionUI.ACIPreAttestation"/>
         </classes>
     </test>
 
-    <test name="33) Validate ACI Non-base Measures Yellow Banner Text">
+    <test name="34) Validate ACI Non-base Measures Yellow Banner Text">
         <classes>
             <class name="mips_SubmissionUI.ACINonBaseYellow"/>
         </classes>
     </test>
 
-    <test name="34) Validate ACI Base Measures Attestation">
+    <test name="35) Validate ACI Base Measures Attestation">
         <classes>
             <class name="mips_SubmissionUI.ACIBaseAttestation"/>
         </classes>
     </test>
 
-    <test name="35) Validate ACI Optional Measures Attestation">
+    <test name="36) Validate ACI Optional Measures Attestation">
         <classes>
             <class name="mips_SubmissionUI.ACIOptionalAttestation"/>
         </classes>
     </test>
 
-    <test name="36) Validate ACI Category Success! Text">
+    <test name="37) Validate ACI Category Success! Text">
         <classes>
             <class name="mips_SubmissionUI.ACICategorySuccess"/>
         </classes>
     </test>
 
-    <test name="37) Validate ACI Bonus Measures Attestation">
+    <test name="38) Validate ACI Bonus Measures Attestation">
         <classes>
             <class name="mips_SubmissionUI.ACIBonusAttestation"/>
         </classes>
     </test>
 
-    <test name="38) Validate ACI CEHRT Used Attestation">
+    <test name="39) Validate ACI CEHRT Used Attestation">
         <classes>
             <class name="mips_SubmissionUI.ACICEHRTAttestation"/>
         </classes>
     </test>
 
-    <test name="39) Validate ACI CEHRT Used Improvement Activities link">
+    <test name="40) Validate ACI CEHRT Used Improvement Activities link">
         <classes>
             <class name="mips_SubmissionUI.ACICEHRTialink"/>
         </classes>
