@@ -61,6 +61,28 @@ public class IAClearAllFilters extends Base {
         G_IAPage ia = new G_IAPage(driver);
         Log.info("IA Page displayed");
 
+        // Open Filters Drop-down list
+        Thread.sleep(1000);
+        ia.openFiltersDD().click();
+        Log.info("Click action on IA Filters Drop-down");
+
+        // Check the Achieving Health Equity
+        try {
+            ia.getAchievingHealthEquity().click();
+            Log.info("Check action on Achieving Health Equity category");
+        } catch (Exception e) {
+            Log.error("Achieving Health Equity category element not found");
+        }
+
+        // Validate the Showing Activities
+        try {
+            Assert.assertEquals(ia.getActivitiesShowing().getText(), "Showing 4 Activities");
+            Log.info("The Showing Activities updated after filtering");
+        }
+        catch (Exception g){
+            Log.error("The Showing Activities haven't updated after filtering");
+        }
+
         // Clear All Filters
         Thread.sleep(1000);
         ia.getClearAllFilters().click();

@@ -110,39 +110,39 @@
         </classes>
     </test>
 
-    <test name="18) Validate IA Page Popup Buttons">
-        <classes>
-            <class name="mips_SubmissionUI.IAPopup"/>
-        </classes>
-    </test>
-
-    <test name="19) Validate IA Filters Button">
+    <test name="18) Validate IA Filters Button">
         <classes>
             <class name="mips_SubmissionUI.IAFilterButton"/>
         </classes>
     </test>
 
-    <test name="20) Validate IA Filter Checkboxes">
+    <test name="19) Validate IA Filter Checkboxes">
         <classes>
             <class name="mips_SubmissionUI.IAFilterCheckboxes"/>
         </classes>
     </test>
 
-    <test name="21) Validate IA Clear All Filters Button">
+    <test name="20) Validate IA Clear All Filters Button">
         <classes>
             <class name="mips_SubmissionUI.IAClearAllFilters"/>
         </classes>
     </test>
 
-    <test name="22) Validate IA Search Activities">
+    <test name="21) Validate IA Search Activities">
         <classes>
             <class name="mips_SubmissionUI.IASearchActivities"/>
         </classes>
     </test>
 
-    <test name="23) Validate IA PCMH Attestation">
+    <test name="22) Validate IA PCMH Attestation">
         <classes>
             <class name="mips_SubmissionUI.IA_PCMHattestation"/>
+        </classes>
+    </test>
+
+    <test name="23) Validate IA Page Popup Buttons">
+        <classes>
+            <class name="mips_SubmissionUI.IAPopup"/>
         </classes>
     </test>
 
