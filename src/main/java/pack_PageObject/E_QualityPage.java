@@ -50,10 +50,10 @@ public class E_QualityPage {
     @FindBy(linkText = "Quality Measures")
     WebElement qualityNavigation;
 
-    @FindBy(linkText = "Advancing Care Information")
+    @FindBy(css = ".currentPage > ul:nth-child(1) > li:nth-child(3) > a:nth-child(1)")
     WebElement aciNavigation;
 
-    @FindBy(xpath = "Improvement Activities")
+    @FindBy(css = ".currentPage > ul:nth-child(1) > li:nth-child(4) > a:nth-child(1)")
     WebElement iaNavigation;
 
     @FindBy(css = "button.link-inline")

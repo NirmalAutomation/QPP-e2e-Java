@@ -2,6 +2,8 @@ package mips_SubmissionUI;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.interactions.Actions;
 import pack_PageObject.*;
 import resources.Base;
 import org.testng.annotations.*;
@@ -112,4 +114,5 @@ public class PageNavigation extends Base {
         Log.info("Browser closed");
         driver = null;
     }
+
 }
