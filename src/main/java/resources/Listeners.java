@@ -1,4 +1,4 @@
-package mips_SubmissionUI;
+package resources;
 
 import org.testng.ITestContext;
 import org.testng.ITestListener;
