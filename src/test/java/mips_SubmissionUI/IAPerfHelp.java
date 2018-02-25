@@ -54,13 +54,14 @@ public class IAPerfHelp extends Base {
     }
 
     @Test(priority=0)
-    public void iaHelpPopup () {
+    public void iaHelpPopup () throws InterruptedException {
 
         // IA Page displayed
         G_IAPage ia = new G_IAPage(driver);
         Log.info("IA Page displayed");
 
         // Opening the Performance Period Help Button
+        Thread.sleep(1000);
         ia.getPerfHelp().click();
         Log.info("Click action on Performance Period Help button to open");
 
@@ -75,22 +76,6 @@ public class IAPerfHelp extends Base {
 
         // Scrolling the page
         ((JavascriptExecutor)driver).executeScript("scroll(0,400)");
-
-    }
-
-    @Test(priority=1)
-    public void pcmhHelpPopup () {
-
-        // IA Page displayed
-        G_IAPage ia = new G_IAPage(driver);
-        Log.info("IA Page displayed");
-
-        // Opening the Performance Period Help Button
-        ia.getIA_PCMHpopup().click();
-        Log.info("Click action on PCMH Help button to open");
-
-        // Scrolling the page
-        ((JavascriptExecutor)driver).executeScript("scroll(0,100)");
 
     }
 

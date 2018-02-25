@@ -53,14 +53,15 @@ public class IApcmhHelp extends Base {
 
     }
 
-    @Test(priority=1)
-    public void pcmhHelpPopup () {
+    @Test(priority=0)
+    public void pcmhHelpPopup () throws InterruptedException {
 
         // IA Page displayed
         G_IAPage ia = new G_IAPage(driver);
         Log.info("IA Page displayed");
 
         // Opening the Performance Period Help Button
+        Thread.sleep(1000);
         ia.getIA_PCMHpopup().click();
         Log.info("Click action on PCMH Help button to open");
 
