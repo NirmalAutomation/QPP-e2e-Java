@@ -26,7 +26,7 @@ public class C_AccountDashboard {
     @FindBy(css = "li.dropdown:nth-child(4)")
     WebElement myaccount;
 
-    @FindBy(css = ".1logout")
+    @FindBy(css = ".logout")
     WebElement logout;
 
     @FindBy(css = ".primary-action")
