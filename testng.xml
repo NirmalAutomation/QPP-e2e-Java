@@ -3,7 +3,7 @@
 <suite name="Regression">
 
     <listeners>
-        <listener class-name="mips_SubmissionUI.Listeners"/>
+        <listener class-name="resources.Listeners"/>
 
         <listener class-name="pack_Reports.ExtentReportNG"/>
     </listeners>
