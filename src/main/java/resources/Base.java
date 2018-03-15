@@ -34,15 +34,15 @@ public class Base {
 
         String browserName = prop.getProperty("browser");
 
-        if (browserName.equals("firefox")) {
-
-            System.setProperty("webdriver.gecko.driver", "D:\\QPP\\BrowserDrivers\\geckodriver.exe");
-            driver = new FirefoxDriver();
-
-        } else if (browserName.equals("chrome")) {
+        if (browserName.equals("chrome")) {
 
             System.setProperty("webdriver.chrome.driver", "D:\\QPP\\BrowserDrivers\\chromedriver.exe");
             driver = new ChromeDriver();
+
+        } else if (browserName.equals("firefox")) {
+
+            System.setProperty("webdriver.gecko.driver", "D:\\QPP\\BrowserDrivers\\geckodriver.exe");
+            driver = new FirefoxDriver();
 
         }else if (browserName.equals("ie")) {
 
