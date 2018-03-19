@@ -44,7 +44,7 @@ public class Base {
             System.setProperty("webdriver.gecko.driver", "D:\\QPP\\BrowserDrivers\\geckodriver.exe");
             driver = new FirefoxDriver();
 
-        } else if (browserName.equals("ie")) {
+        }else if (browserName.equals("ie")) {
 
             System.setProperty("webdriver.ie.driver", "D:\\QPP\\BrowserDrivers\\IEDriverServer.exe");
             driver = new InternetExplorerDriver();
